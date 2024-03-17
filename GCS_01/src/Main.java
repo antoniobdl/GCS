@@ -25,4 +25,20 @@ public class Main {
         return false;
     }
 
+
+    public static int nOcorrencias(ArrayList<Integer> numero){
+        int ocorrencia = 0;
+        int cont = 0;
+        for(int j = 0; j < 10; j++){
+            
+            for(int k = 1; k < 10; k++){
+                if(numero.get(j) == numero.get(k)){
+                    ocorrencia++;
+                }
+            }
+        }
+        System.out.print("O número de ocorrências de um elemento é de: " + ocorrencia);
+        return ocorrencia;
+    }
+
 }
