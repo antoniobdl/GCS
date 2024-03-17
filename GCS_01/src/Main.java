@@ -5,12 +5,12 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Integer> lista = new ArrayList<>();
         ArrayList<Integer> lista2 = new ArrayList<>();
-        // teste abc
-        Random rand_num = new Random();
+        // teste pra caralho
+        Random random_num = new Random();
         int tamanhoLista = 10;
         for (int i = 0; i < tamanhoLista; i++) {
             // adiciona número aleatório entre 0 e 9 na lista
-            lista.add(rand_num.nextInt(10));
+            lista.add(random_num.nextInt(10));
         }
     }
 
@@ -52,7 +52,5 @@ public class Main {
         System.out.print("O número de ocorrências de um elemento é de: " + ocorrencia);
         return ocorrencia;
     }
-
-    
 
 }
