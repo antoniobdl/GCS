@@ -4,6 +4,7 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         ArrayList<Integer> lista = new ArrayList<>();
+        ArrayList<Integer> lista2 = new ArrayList<>();
         // criando lista com números aleatórios
         Random rand_num = new Random();
         int tamanhoLista = 10;
@@ -12,6 +13,17 @@ public class Main {
             lista.add(rand_num.nextInt(10));
         }
     }
+
+    public static ArrayList<Integer> union(ArrayList<Integer> lista, ArrayList<Integer> lista2) {
+        ArrayList<Integer> result = new ArrayList<>(lista); 
+
+
+        result.addAll(lista2);
+
+        return result;
+    }
+
+
 
     public static boolean hasRepeat(ArrayList<Integer> lista) {
         for (int i = 0; i < lista.size(); i++) {
