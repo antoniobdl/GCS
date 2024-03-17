@@ -5,12 +5,12 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Integer> lista = new ArrayList<>();
         ArrayList<Integer> lista2 = new ArrayList<>();
-        // qual foi irmao, tá olhando oq
-        Random rand = new Random();
+        // teste abc
+        Random rand_num = new Random();
         int tamanhoLista = 10;
         for (int i = 0; i < tamanhoLista; i++) {
             // adiciona número aleatório entre 0 e 9 na lista
-            lista.add(rand.nextInt(10));
+            lista.add(rand_num.nextInt(10));
         }
     }
 
