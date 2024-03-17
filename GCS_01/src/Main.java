@@ -7,6 +7,7 @@ public class Main {
         ArrayList<Integer> lista2 = new ArrayList<>();
         // teste pra caralho
         Random random_num = new Random();
+
         int tamanhoLista = 10;
         for (int i = 0; i < tamanhoLista; i++) {
             // adiciona número aleatório entre 0 e 9 na lista
