@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Integer> lista = new ArrayList<>();
         ArrayList<Integer> lista2 = new ArrayList<>();
-        // teste pra caralho
+        // Teste git intellij
         Random random_num = new Random();
 
         int tamanhoLista = 10;
