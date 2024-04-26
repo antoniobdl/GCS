@@ -1,28 +1,28 @@
 public class Departamento {
-    private int id;
-    private String nome;
+    private int idDpt;
+    private String nomeDpt;
     private double limiteOrcamento; // Limite orçamentário para pedidos
 
-    public Departamento(int id, String nome, double limiteOrcamento) {
-        this.id = id;
-        this.nome = nome;
+    public Departamento(int idDpt, String nomeDpt, double limiteOrcamento) {
+        this.idDpt = idDpt;
+        this.nomeDpt = nomeDpt;
         this.limiteOrcamento = limiteOrcamento;
     }
 
-    public int getId() {
-        return id;
+    public int getIdDpt() {
+        return idDpt;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdDpt(int idDpt) {
+        this.idDpt = idDpt;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeDpt() {
+        return nomeDpt;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeDpt(String nomeDpt) {
+        this.nomeDpt = nomeDpt;
     }
 
     public double getLimiteOrcamento() {
