@@ -1,5 +1,5 @@
 import java.time.LocalDate;
-
+import java.util.Scanner;
 public class Pedido {
     private int id;
     private Usuario solicitante;
@@ -12,8 +12,7 @@ public class Pedido {
     private int quantidade;
     private double valorTotal;
 
-    public Pedido(int id, Usuario solicitante, Departamento departamento, LocalDate dataPedido,
-                  String descricaoItem, double valorUnitario, int quantidade) {
+    public Pedido() {
         this.id = id;
         this.solicitante = solicitante;
         this.departamento = departamento;
@@ -98,4 +97,21 @@ public class Pedido {
         calcularValorTotal();
     }
 
+    public void alterarStatus(){
+        if(solicitante.getTipo() == "Admin"){
+            Scanner in = new Scanner(System.in);
+            System.out.println("Deseja alterar o status do pedido para: 1 - Aprovado ou 2 - Rejeitado?");
+            int opcao = in.nextInt();
+            String aprovado = "Aprovado";
+            String rejeitado = "Rejeitado";
+
+            if(opcao == 1){
+                status.equals(aprovado);
+                setStatus(status);
+            }else{
+                status.equals(rejeitado);
+                setStatus(status);
+            }
+        }
+    }
 }
