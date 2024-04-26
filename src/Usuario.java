@@ -20,5 +20,4 @@ public class Usuario extends Funcionario{
         this.id = id;
     }
 
-
 }

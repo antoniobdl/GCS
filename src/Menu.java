@@ -22,7 +22,6 @@ public class Menu {
         if(opc == 1){
             atual.alterarStatus();
         }else{
-
         }
     }
     public void adicionando(){
