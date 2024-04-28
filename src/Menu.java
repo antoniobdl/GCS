@@ -10,6 +10,43 @@ public class Menu {
     private Pedido atual;
     Scanner in = new Scanner(System.in);
 
+    public void testeMenu(){
+        System.out.println("/----//----/Sistema/----//----/");
+        System.out.println("[1] Escolher Usuário");
+        System.out.println("[2] Registrar pedido de aquisição");
+        System.out.println("[3] Remover pedido");
+        System.out.println("[4] Alterar Status");
+        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+        System.out.println("[5] Estatísticas Gerais");
+        System.out.println("[6] Visualizar pedido detalhado");
+        System.out.println("[7] Buscar pedido descrição");
+        System.out.println("[8] Buscar pedido funcionário");
+        System.out.println("[9] Listar todos os pedidos");
+        System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+
+        System.out.println("\f");
+
+        int decisao = in.nextInt();
+        switch(decisao){
+            case 1: ; break;
+            case 2: addPedido() ; break;
+            case 3: ; break;
+            case 4: ; break;
+            case 5: ; break;
+            case 6: ; break;
+            case 7: ; break;
+            case 8: ;break;
+            default: System.out.println("OPÇÃO INVALIDA!");
+        }
+    }
+
+
+
+
+
+
+
+
     public void executar(){
         System.out.print("Deseja fazer um novo pedido? Se sim digite 1.");
         int decisao = in.nextInt();
@@ -27,6 +64,7 @@ public class Menu {
     public void adicionando(){
             listaFuncionario.add(new Funcionario("RH","João Pedro","JP","Admin"));
             listaFuncionario.add(new Funcionario("RH","Beatriz Santos","BS","Funcionário"));
+            listaFuncionario.add(new Funcionario("RH","Felipe Arnt","FA","Funcionário"));
             listaFuncionario.add(new Funcionario("Financeiro","Lucas Ribeiro","LR","Admin"));
             listaFuncionario.add(new Funcionario("Financeiro","Antonio Lombardia","AL","Admin"));
     }
