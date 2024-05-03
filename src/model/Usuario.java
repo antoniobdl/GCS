@@ -3,7 +3,7 @@ public class Usuario extends Funcionario{
     private String nome;
     private String iniciais;
     private String tipo; // Funcionário ou Administrador
-    // Construtor
+
     public Usuario(int id,String dpt, String nome, String iniciais, String tipo) {
         super(dpt,nome,iniciais,tipo);
         this.id = id;
