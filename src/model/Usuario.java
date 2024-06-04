@@ -1,15 +1,16 @@
-public class Usuario extends Funcionario{
+package model;
+
+public class Usuario {
     private int id;
     private String nome;
     private String iniciais;
     private String tipo; // Funcionário ou Administrador
 
-    public Usuario(int id,String dpt, String nome, String iniciais, String tipo) {
-        super(dpt,nome,iniciais,tipo);
+    public Usuario(int id, String nome, String iniciais, String tipo) {
         this.id = id;
-        this.nome = getNome();
-        this.iniciais = getIniciais();
-        this.tipo = getTipo();
+        this.nome = nome;
+        this.iniciais = iniciais;
+        this.tipo = tipo;
     }
 
     public int getId() {
@@ -20,4 +21,27 @@ public class Usuario extends Funcionario{
         this.id = id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getIniciais() {
+        return iniciais;
+    }
+
+    public void setIniciais(String iniciais) {
+        this.iniciais = iniciais;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 }
