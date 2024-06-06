@@ -28,24 +28,17 @@ public class Menu {
 
         int decisao = in.nextInt();
         switch(decisao){
-            case 1: ; break;
+            case 1: escolherUsuario(); break;
             case 2: addPedido() ; break;
             case 3: ; break;
             case 4: ; break;
-            case 5: ; break;
+            case 5: estatisticasGerais(); break;
             case 6: ; break;
             case 7: ; break;
             case 8: ;break;
             default: System.out.println("OPÇÃO INVALIDA!");
         }
     }
-
-
-
-
-
-
-
 
     public void executar(){
         System.out.print("Deseja fazer um novo pedido? Se sim digite 1.");
@@ -68,6 +61,77 @@ public class Menu {
             listaFuncionario.add(new Funcionario("Financeiro","Lucas Ribeiro","LR","Admin"));
             listaFuncionario.add(new Funcionario("Financeiro","Antonio Lombardia","AL","Admin"));
     }
+
+    private void escolherUsuario() {
+        System.out.println("Insira o ID do Usuário: ");
+        int userId = in.nextInt();
+        for (Usuario u : listaUsuario) {
+            if (u.getId() == userId) {
+                usuarioAtual = u;
+                System.out.println("Usuário " + u.getNome() + " selecionado.");
+                return;
+            }
+        }
+        System.out.println("Usuário não encontrado.");
+    }
+
+    public void estatisticasGerais() {
+        if (usuarioAtual != null && usuarioAtual.getTipo().equals("Admin")) {
+            int totalPedidos = listaPedido.size();
+            int pedidosAprovados = 0;
+            int pedidosReprovados = 0;
+            int pedidosUltimos30Dias = 0;
+            double valorTotalUltimos30Dias = 0.0;
+            double valorTotalAbertos = 0.0;
+            Pedido maiorPedidoAberto = null;
+
+            LocalDate hoje = LocalDate.now();
+            LocalDate trintaDiasAtras = hoje.minus(30, ChronoUnit.DAYS);
+
+            for (Pedido pedido : listaPedido) {
+                if (pedido.getStatus().equalsIgnoreCase("Aprovado")) {
+                    pedidosAprovados++;
+                } else if (pedido.getStatus().equalsIgnoreCase("Reprovado")) {
+                    pedidosReprovados++;
+                }
+
+                if (pedido.getDataPedido().isAfter(trintaDiasAtras) && pedido.getDataPedido().isBefore(hoje)) {
+                    pedidosUltimos30Dias++;
+                    valorTotalUltimos30Dias += pedido.getValorTotal();
+                }
+
+                if (pedido.getStatus().equalsIgnoreCase("Aberto")) {
+                    if (maiorPedidoAberto == null || pedido.getValorTotal() > maiorPedidoAberto.getValorTotal()) {
+                        maiorPedidoAberto = pedido;
+                    }
+                    valorTotalAbertos += pedido.getValorTotal();
+                }
+            }
+
+            double percentualAprovados = (totalPedidos > 0) ? (pedidosAprovados / (double) totalPedidos) * 100 : 0;
+            double percentualReprovados = (totalPedidos > 0) ? (pedidosReprovados / (double) totalPedidos) * 100 : 0;
+            double valorMedioUltimos30Dias = (pedidosUltimos30Dias > 0) ? valorTotalUltimos30Dias / pedidosUltimos30Dias : 0;
+
+            System.out.println("Número total de pedidos: " + totalPedidos);
+            System.out.println("Pedidos aprovados: " + pedidosAprovados + " (" + String.format("%.2f", percentualAprovados) + "%)");
+            System.out.println("Pedidos reprovados: " + pedidosReprovados + " (" + String.format("%.2f", percentualReprovados) + "%)");
+            System.out.println("Número de pedidos nos últimos 30 dias: " + pedidosUltimos30Dias);
+            System.out.println("Valor médio dos pedidos nos últimos 30 dias: " + String.format("%.2f", valorMedioUltimos30Dias));
+            System.out.println("Valor total dos pedidos abertos: " + String.format("%.2f", valorTotalAbertos));
+
+            if (maiorPedidoAberto != null) {
+                System.out.println("Detalhes do pedido de maior valor ainda aberto:");
+                System.out.println("ID: " + maiorPedidoAberto.getId());
+                System.out.println("Descrição: " + maiorPedidoAberto.getDescricaoItem());
+                System.out.println("Valor Total: " + String.format("%.2f", maiorPedidoAberto.getValorTotal()));
+            } else {
+                System.out.println("Não há pedidos abertos.");
+            }
+        } else {
+            System.out.println("Acesso negado. Somente administradores podem ver as estatísticas gerais.");
+        }
+    }
+
 
     public Pedido addPedido(){
         int id;
