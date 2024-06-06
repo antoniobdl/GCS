@@ -30,12 +30,12 @@ public class Menu {
         switch(decisao){
             case 1: escolherUsuario(); break;
             case 2: addPedido() ; break;
-            case 3: ; break;
-            case 4: ; break;
+            case 3: removerPedido(); break;
+            case 4: alterarStatus(); break;
             case 5: estatisticasGerais(); break;
             case 6: ; break;
             case 7: ; break;
-            case 8: ;break;
+            case 8: buscarPedidosPorUsuario() ;break;
             default: System.out.println("OPÇÃO INVALIDA!");
         }
     }
@@ -74,6 +74,90 @@ public class Menu {
         }
         System.out.println("Usuário não encontrado.");
     }
+
+     public void removerPedido() {
+        System.out.println("Insira o ID do pedido a ser removido: ");
+        int pedidoId = in.nextInt();
+        boolean pedidoRemovido = false;
+
+        for (int i = 0; i < listaPedido.size(); i++) {
+            if (listaPedido.get(i).getId() == pedidoId) {
+                listaPedido.remove(i);
+                pedidoRemovido = true;
+                System.out.println("Pedido removido com sucesso.");
+                break;
+            }
+        }
+
+        if (!pedidoRemovido) {
+            System.out.println("Pedido não encontrado.");
+        }
+    }
+
+    public void alterarStatusPedido() {
+        if (usuarioAtual != null && usuarioAtual.getTipo().equals("Admin")) {
+            System.out.println("Insira o ID do pedido para alterar o status: ");
+            int pedidoId = in.nextInt();
+            Pedido pedido = null;
+
+            for (Pedido p : listaPedido) {
+                if (p.getId() == pedidoId) {
+                    pedido = p;
+                    break;
+                }
+            }
+
+            if (pedido == null) {
+                System.out.println("Pedido não encontrado.");
+                return;
+            }
+
+            System.out.println("Deseja alterar o status do pedido para: 1 - Aprovado ou 2 - Rejeitado?");
+            int opcao = in.nextInt();
+            if (opcao == 1) {
+                pedido.setStatus("Aprovado");
+                System.out.println("Status do pedido alterado para Aprovado.");
+            } else if (opcao == 2) {
+                pedido.setStatus("Reprovado");
+                System.out.println("Status do pedido alterado para Rejeitado.");
+            } else {
+                System.out.println("Opção inválida.");
+            }
+        } else {
+            System.out.println("Acesso negado. Somente administradores podem alterar o status dos pedidos.");
+        }
+    }
+
+
+    public void buscarPedidosPorUsuario() {
+        System.out.println("Insira o ID do Usuário para buscar os pedidos: ");
+        int userId = in.nextInt();
+        Usuario usuario = null;
+        
+        for (Usuario u : listaUsuario) {
+            if (u.getId() == userId) {
+                usuario = u;
+                break;
+            }
+        }
+        
+        if (usuario == null) {
+            System.out.println("Usuário não encontrado.");
+            return;
+        }
+        
+        System.out.println("Pedidos feitos pelo usuário " + usuario.getNome() + ":");
+        for (Pedido pedido : listaPedido) {
+            if (pedido.getSolicitante().getId() == userId) {
+                System.out.println("ID do Pedido: " + pedido.getId() + 
+                                   ", Descrição: " + pedido.getDescricaoItem() + 
+                                   ", Status: " + pedido.getStatus() + 
+                                   ", Valor Total: " + pedido.getValorTotal() + 
+                                   ", Data do Pedido: " + pedido.getDataPedido());
+            }
+        }
+    }
+
 
     public void estatisticasGerais() {
         if (usuarioAtual != null && usuarioAtual.getTipo().equals("Admin")) {
