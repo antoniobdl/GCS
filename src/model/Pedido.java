@@ -1,3 +1,5 @@
+package model;
+
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -28,6 +30,7 @@ public class Pedido {
     private void calcularValorTotal() {
         this.valorTotal = valorUnitario * quantidade;
     }
+
     public double getValorTotal() {
         return valorTotal;
     }
@@ -35,6 +38,7 @@ public class Pedido {
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -42,6 +46,7 @@ public class Pedido {
     public Usuario getSolicitante() {
         return solicitante;
     }
+
     public void setSolicitante(Usuario solicitante) {
         this.solicitante = solicitante;
     }
@@ -49,6 +54,7 @@ public class Pedido {
     public Departamento getDepartamento() {
         return departamento;
     }
+
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
     }
@@ -57,19 +63,22 @@ public class Pedido {
         return dataPedido;
     }
 
+    public void setDataPedido(LocalDate dataPedido) {
+        this.dataPedido = dataPedido;
+    }
+
     public LocalDate getDataConclusao() {
         return dataConclusao;
     }
+
     public void setDataConclusao(LocalDate dataConclusao) {
         this.dataConclusao = dataConclusao;
-    }
-    public void setDataPedido(LocalDate dataPedido) {
-        this.dataPedido = dataPedido;
     }
 
     public String getStatus() {
         return status;
     }
+
     public void setStatus(String status) {
         this.status = status;
     }
@@ -77,6 +86,7 @@ public class Pedido {
     public String getDescricaoItem() {
         return descricaoItem;
     }
+
     public void setDescricaoItem(String descricaoItem) {
         this.descricaoItem = descricaoItem;
     }
@@ -84,6 +94,7 @@ public class Pedido {
     public double getValorUnitario() {
         return valorUnitario;
     }
+
     public void setValorUnitario(double valorUnitario) {
         this.valorUnitario = valorUnitario;
         calcularValorTotal();
@@ -98,20 +109,19 @@ public class Pedido {
         calcularValorTotal();
     }
 
-    public void alterarStatus(){
-        if(solicitante.getTipo() == "Admin"){
+    public void alterarStatus() {
+        if (solicitante.getTipo().equals("Administrador")) {
             Scanner in = new Scanner(System.in);
             System.out.println("Deseja alterar o status do pedido para: 1 - Aprovado ou 2 - Rejeitado?");
             int opcao = in.nextInt();
+            in.nextLine(); // Consumir nova linha
             String aprovado = "Aprovado";
             String rejeitado = "Rejeitado";
 
-            if(opcao == 1){
-                status.equals(aprovado);
-                setStatus(status);
-            }else{
-                status.equals(rejeitado);
-                setStatus(status);
+            if (opcao == 1) {
+                setStatus(aprovado);
+            } else {
+                setStatus(rejeitado);
             }
         }
     }
