@@ -14,6 +14,7 @@ public class Menu {
     private ArrayList<Pedido> listaPedido = new ArrayList<>();
     private ArrayList<Departamento> listaDpt = new ArrayList<>(5);
     private Pedido atual;
+    private Usuario usuarioAtual;
     Scanner in = new Scanner(System.in);
 
     public Menu() {
@@ -196,6 +197,7 @@ public class Menu {
             System.out.println("Usuário não encontrado.");
         } else {
             Usuario usuario = listaUsuario.get(index);
+            usuarioAtual = listaUsuario.get(index);
             System.out.println("Usuário escolhido: " + usuario.getNome());
         }
     }
@@ -288,7 +290,7 @@ public class Menu {
             Pedido maiorPedidoAberto = null;
 
             LocalDate hoje = LocalDate.now();
-            LocalDate trintaDiasAtras = hoje.minus(30, ChronoUnit.DAYS);
+            LocalDate trintaDiasAtras = hoje.minusDays(30);
 
             for (Pedido pedido : listaPedido) {
                 if (pedido.getStatus().equalsIgnoreCase("Aprovado")) {
